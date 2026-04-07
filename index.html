@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-bs-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Syed Farshaaz Ahmed</title>
+
+    <!-- CSS libs -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Pacifico&family=Montserrat:wght@400;700&family=Comic+Neue:wght@400;700&family=Oswald:wght@700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg: linear-gradient(180deg, #eef3ff 0%, #f6f9ff 55%, #ffffff 100%);
+        --card: rgba(255, 255, 255, 0.75);
+        --card-2: rgba(250, 250, 252, 0.6);
+        --text: #1e1e1e;
+        --muted: #6b7280;
+        --brand-red: #0033cc;
+        --brand-red-2: #477aff;
+        --black: #0a0f1f;
+        --accent: #ffb199;
+        --ring: rgba(0, 51, 204, 0.35);
+        --shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+      }
+
+      [data-theme="dark"] {
+        --bg: #0a0f1f;
+        --card: rgba(0, 0, 0, 0.65);
+        --card-2: rgba(0, 0, 0, 0.45);
+        --text: #ffffff;
+        --muted: #b0b0b0;
+        --brand-red: #0033cc;
+        --brand-red-2: #477aff;
+        --black: #0a0f1f;
+        --accent: #ff9aa2;
+        --ring: rgba(0, 102, 255, 0.55);
+        --shadow: 0 24px 48px rgba(0, 0, 0, 0.85);
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        color: var(--text);
+        background: var(--bg);
+        padding-bottom: 80px;
+        overflow-x: hidden;
+        position: relative;
+      }
+
+      /* remove doodle/bg texture */
+      .doodle {
+        display: none !important;
+      }
+
+      /* progress bar */
+      #progressBar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 4px;
+        width: 0;
+        background: var(--brand-red);
+        z-index: 2000;
+        box-shadow: 0 0 8px rgba(0, 51, 204, 0.6);
+        transition: width 0.08s linear;
+      }
+
+      /* section heading + underline */
+      .section-header {
+        animation: heroGlow 6s ease-in-out infinite alternate;
+        position: relative;
+        margin-bottom: 20px;
+        font-family: "Oswald", sans-serif;
+        font-size: clamp(1.9rem, 3.6vw, 2.4rem);
+        font-weight: 900;
+        letter-spacing: 0.2px;
+        color: var(--text);
+      }
+      .section-header::after {
+        content: "";
+        display: block;
+        width: 84px;
+        height: 4px;
+        margin: 12px auto 0;
+        border-radius: 999px;
+        background: var(--brand-red);
+      }
+
+      @keyframes heroGlow {
+        from {
+          text-shadow: 0 0 8px rgba(0, 51, 204, 0.35);
+        }
+        to {
+          text-shadow: 0 0 18px rgba(0, 51, 204, 0.85);
+        }
+      }
+
+      section {
+        background: var(--bg);
+      }
+      [data-theme="dark"] section {
+        border-bottom: 1px solid rgba(0, 51, 204, 0.22) !important;
+        background: #0a0f1f;
+      }
+
+      /* nav + links */
+      nav,
+      footer {
+        background: none;
+        color: var(--text);
+        font-family: "Comic Neue", cursive;
+        font-size: 1.1rem;
+        font-weight: 700;
+      }
+      .nav-link {
+        position: relative;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 2px;
+        height: 2px;
+        width: 0;
+        background: linear-gradient(90deg, var(--brand-red), #000);
+        transition: width 0.25s ease;
+      }
+      .nav-link:hover::after {
+        width: 100%;
+      }
+      .contact-links {
+        font-size: 18px;
+        margin: 10px;
+        color: var(--brand-red);
+        text-decoration: none;
+      }
+      .contact-links:hover {
+        text-decoration: underline;
+      }
+
+      /* navbar glass */
+      .navbar.glassy {
+        position: sticky;
+        top: 0;
+        z-index: 1100;
+        border-radius: 14px;
+        margin: 10px;
+        backdrop-filter: blur(14px) saturate(160%);
+        -webkit-backdrop-filter: blur(14px) saturate(160%);
+      }
+      .navbar-dark .navbar-toggler {
+        border-color: rgba(255, 255, 255, 0.25);
+      }
+      .navbar-dark .navbar-toggler-icon {
+        background-image: var(
+          --bs-navbar-toggler-icon-bg,
+          url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255, 0.85)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")
+        );
+      }
+      .navbar-light .navbar-toggler {
+        border-color: rgba(0, 0, 0, 0.2);
+      }
+      .navbar-light .navbar-toggler-icon {
+        background-image: var(
+          --bs-navbar-toggler-icon-bg,
+          url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0,0,0, 0.75)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")
+        );
+      }
+
+      /* big header theme pill */
+      .icon-btn {
+        border: none;
+        background: transparent;
+        padding: 8px 10px;
+        border-radius: 10px;
+        transition: background-color 0.2s ease, transform 0.15s ease;
+        cursor: pointer;
+      }
+      .icon-btn:hover {
+        background: rgba(255, 255, 255, 0.06);
+        transform: translateY(-2px);
+      }
+      .navbar .theme-big {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 16px;
+        border-radius: 9999px;
+        background: var(--brand-red);
+        color: #fff;
+        font-weight: 800;
+        box-shadow: var(--shadow);
+      }
+
+      /* hero */
+      .hero {
+        display: grid;
+        grid-template-columns: 340px 1fr;
+        gap: 28px;
+        align-items: center;
+        padding: 80px 40px;
+        color: #fff;
+        position: relative;
+        background: radial-gradient(
+            1200px 600px at 20% 20%,
+            color-mix(in srgb, var(--brand-red) 45%, transparent),
+            transparent 60%
+          ),
+          linear-gradient(135deg, #1a1a1a, var(--black));
+        border-bottom-left-radius: 14px;
+        border-bottom-right-radius: 14px;
+        box-shadow: var(--shadow);
+        perspective: 1000px;
+        overflow: hidden;
+      }
+      @media (max-width: 992px) {
+        .hero {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+        .hero > img {
+          margin: 0 auto 16px auto;
+        }
+      }
+      .hero > img {
+        width: 280px;
+        max-width: 40vw;
+        border-radius: 14px;
+        object-fit: cover;
+        border: 8px solid var(--card);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+        position: relative;
+        z-index: 1;
+        transform: none !important;
+      }
+      .hero::before,
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+      .hero::before {
+        background: radial-gradient(
+          closest-side,
+          rgba(0, 51, 204, 0.7),
+          rgba(0, 51, 204, 0.28),
+          transparent 62%
+        );
+        filter: blur(24px);
+        opacity: 0.45;
+      }
+      .hero::after {
+        background: radial-gradient(
+          closest-side,
+          rgba(0, 51, 204, 0.75),
+          rgba(0, 51, 204, 0.32),
+          transparent 70%
+        );
+        filter: blur(34px);
+        opacity: 0.35;
+      }
+      .hero h1 {
+        position: relative;
+        overflow: hidden;
+        font-size: clamp(2.2rem, 4.2vw, 3.2rem);
+        font-weight: 800;
+        color: #fff;
+        z-index: 1;
+        transition: transform 0.25s ease;
+        animation: heroGlow 6s ease-in-out infinite alternate;
+      }
+      .hero h1:hover {
+        transform: scale(1.015);
+      }
+      .hero h1::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -6px;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(90deg, transparent, var(--brand-red-2), transparent);
+        transform: translateX(-100%);
+        transition: transform 0.8s ease;
+      }
+      .hero h1:hover::after {
+        transform: translateX(100%);
+      }
+
+      /* glass */
+      .glass {
+        backdrop-filter: blur(14px) saturate(160%);
+        -webkit-backdrop-filter: blur(14px) saturate(160%);
+        background: linear-gradient(180deg, var(--card), var(--card-2));
+        border: 1px solid rgba(255, 255, 255, 0.18);
+      }
+      .glass-dark {
+        background: radial-gradient(
+            800px 400px at 10% 10%,
+            rgba(0, 51, 204, 0.2),
+            transparent 60%
+          ),
+          linear-gradient(180deg, rgba(20, 20, 20, 0.78), rgba(10, 10, 10, 0.58));
+        border: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      /* experience */
+      .experience-section {
+        background: var(--black) !important;
+        color: #fff;
+        padding: 30px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      /* skills */
+      .skill-icon {
+        transform-style: preserve-3d;
+        perspective: 800px;
+        text-align: center;
+        margin: 14px;
+        padding: 20px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, var(--card), var(--card-2));
+        box-shadow: var(--shadow);
+        transition: transform 0.28s ease, box-shadow 0.28s ease,
+          outline-color 0.28s ease;
+        outline: 2px solid transparent;
+        position: relative;
+        overflow: hidden;
+      }
+      .skill-icon::after {
+        content: "";
+        position: absolute;
+        inset: -100% 0 auto;
+        height: 60%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        transform: translateY(-100%);
+        transition: transform 0.6s ease;
+        pointer-events: none;
+      }
+      .skill-icon:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 0 22px rgba(0, 51, 204, 0.55) !important;
+        outline-color: var(--brand-red) !important;
+      }
+      .skill-icon:hover::after {
+        transform: translateY(80%);
+      }
+      .skill-icon img {
+        height: 64px;
+        width: auto;
+        object-fit: contain;
+        transition: transform 0.25s ease;
+      }
+      .skill-icon h5 {
+        font-size: 0.88rem;
+        margin-top: 10px;
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo,
+          monospace !important;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        font-weight: 600;
+      }
+
+      /* projects */
+      #projects {
+        padding-top: 5rem;
+        padding-bottom: 4rem;
+      }
+      .project-card {
+        position: relative;
+        background: rgba(0, 0, 0, 0.55) !important;
+        backdrop-filter: blur(14px) saturate(160%);
+        -webkit-backdrop-filter: blur(14px) saturate(160%);
+        border-radius: 14px;
+        border: 1px solid rgba(0, 51, 204, 0.18);
+        box-shadow: 0 0 18px rgba(0, 51, 204, 0.18);
+        padding: 24px;
+        margin-bottom: 24px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease,
+          border-color 0.3s ease;
+        overflow: hidden;
+      }
+      .project-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at var(--mx, 50%) var(--my, 50%),
+          rgba(255, 255, 255, 0.18),
+          transparent 60%
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+      }
+      .project-card:hover::before {
+        opacity: 1;
+      }
+      .project-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        border-color: rgba(0, 51, 204, 0.65);
+        box-shadow: 0 0 34px rgba(0, 51, 204, 0.65);
+      }
+      .project-card h3 {
+        position: relative;
+        padding-left: 14px;
+        text-align: left !important;
+        font-family: "SFMono-Regular", Consolas, monospace;
+        text-transform: uppercase;
+        font-size: 1rem;
+        letter-spacing: 0.8px;
+        margin-bottom: 12px;
+      }
+      .project-card h3::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background: var(--brand-red);
+        border-radius: 2px;
+      }
+
+      /* certs */
+      .cert-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 14px !important;
+        background: linear-gradient(135deg, #fef9ff, #e8ecff);
+        padding: 24px;
+        box-shadow: var(--shadow);
+        transition: transform 0.28s ease, box-shadow 0.28s ease !important;
+      }
+      .cert-card:hover {
+        transform: translateY(-8px) !important;
+        box-shadow: 0 18px 34px rgba(0, 0, 0, 0.35) !important;
+      }
+      [data-theme="dark"] .cert-card {
+        background: linear-gradient(135deg, rgba(34, 34, 40, 0.88), rgba(20, 20, 26, 0.78));
+        border: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      [data-theme="dark"] .cert-card h5,
+      [data-theme="dark"] .cert-card p,
+      [data-theme="dark"] .cert-card a {
+        color: #f5f7ff !important;
+      }
+      [data-theme="dark"] .cert-card .text-body-secondary {
+        color: #cfd5ff !important;
+      }
+
+      /* experience accordion overrides (contrast) */
+      [data-theme="dark"] .accordion-button {
+        background: #0d0d0d;
+        color: #fff;
+      }
+      [data-theme="dark"] .accordion-body {
+        background: #0a0f1f;
+        color: #fff;
+      }
+
+      /* footer */
+      footer {
+        text-align: center;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+        padding: 10px 0;
+      }
+
+      /* animated linux prompt background */
+      .animated-linux-bg {
+        position: fixed;
+        inset: 0;
+        background: repeating-linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.03) 0px,
+            rgba(255, 255, 255, 0.03) 1px,
+            transparent 1px,
+            transparent 18px
+          ),
+          repeating-linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.02) 0px,
+            rgba(255, 255, 255, 0.02) 1px,
+            transparent 1px,
+            transparent 18px
+          );
+        background-size: 100% 100%;
+        z-index: -2;
+        opacity: 0.08;
+        animation: terminalScroll 20s linear infinite;
+      }
+      @keyframes terminalScroll {
+        0% {
+          background-position: 0 0, 0 0;
+        }
+        100% {
+          background-position: 0 100%, 100% 0;
+        }
+      }
+
+      /* theme FAB hidden */
+      .theme-fab {
+        display: none !important;
+      }
+
+      /* terminal cursor */
+      #term-input {
+        caret-color: var(--brand-red) !important;
+      }
+      #block-cursor {
+        width: 10px;
+        height: 1.2em;
+        background: var(--brand-red);
+        animation: cursorBlink 1s steps(1) infinite;
+        display: inline-block;
+        margin-left: 2px;
+      }
+      @keyframes cursorBlink {
+        0%,
+        50% {
+          opacity: 1;
+        }
+        51%,
+        100% {
+          opacity: 0.15;
+        }
+      }
+
+      /* infolob card in dark */
+      [data-theme="dark"] #infolob-role {
+        background: #0a0f1f !important;
+        color: #fff !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+      }
+
+      /* Zabbix logo size */
+      .skill-icon img[alt="Zabbix"] {
+        height: 44px !important;
+        width: auto !important;
+      }
+
+      /* reveal on scroll */
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+      }
+      .reveal.reveal-in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .reveal {
+          opacity: 1 !important;
+          transform: none !important;
+          transition: none !important;
+        }
+      }
+
+      /* terminal */
+      .terminal {
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(0, 0, 0, 0.42);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+        will-change: transform;
+        transform-style: preserve-3d;
+      }
+      .terminal .titlebar {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 14px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.08),
+          rgba(255, 255, 255, 0.02)
+        );
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .terminal .titlebar .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        display: inline-block;
+        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.25);
+      }
+      .terminal .titlebar .dot.red {
+        background: #ff5f57;
+      }
+      .terminal .titlebar .dot.yellow {
+        background: #fdbc2e;
+      }
+      .terminal .titlebar .dot.green {
+        background: #28c840;
+      }
+
+      .hero .terminal {
+        width: min(92vw, 640px);
+        max-width: 640px;
+        font-size: 0.95rem;
+      }
+
+      .hero-tilt {
+        transform-style: preserve-3d;
+        transition: transform 0.12s ease-out;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="animated-linux-bg"></div>
+    <div id="progressBar"></div>
+    <div class="doodle"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg glass glassy">
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="#technical-skills">Skills</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#professional-experience">Experience</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#projects">Projects</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          </ul>
+
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+            <li class="nav-item me-1">
+              <button
+                class="icon-btn theme-big"
+                id="themeToggle"
+                type="button"
+                title="Toggle theme"
+                aria-label="Toggle color theme"
+              >
+                <i id="themeIcon" class="fa-solid fa-moon"></i>
+                <span id="headerThemeLabel" class="ms-2 d-none d-sm-inline"
+                  >Dark</span
+                >
+              </button>
+            </li>
+            <li class="nav-item">
+              <a
+                class="contact-links"
+                href="mailto:syedfarshaazahmed@gmail.com"
+                title="Email"
+                ><i class="fa-solid fa-envelope"></i
+              ></a>
+            </li>
+            <li class="nav-item">
+              <a class="contact-links" href="tel:+917981329741" title="Call"
+                ><i class="fa-solid fa-phone"></i
+              ></a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="contact-links"
+                href="https://www.linkedin.com/in/syed-farshaaz-ahmed-b0365121b"
+                target="_blank"
+                rel="noopener"
+                title="LinkedIn"
+                ><i class="fa-brands fa-linkedin"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <!-- Hero -->
+      <section id="home" class="hero mt-2 glass-dark">
+        <img src="profile.jpg" alt="Profile Picture" />
+
+        <div class="text-content hero-tilt">
+          <h1 id="heroName" class="fw-bold shimmer-on-hover">
+            Syed Farshaaz Ahmed
+          </h1>
+          <p id="heroSub" class="section-description text-white mb-1">
+            Associate Cloud Consultant
+          </p>
+
+          <div class="mt-3">
+            <div class="terminal glass" id="terminal">
+              <div class="titlebar">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <div
+                class="d-flex"
+                style="
+                  gap: 8px;
+                  padding: 8px 12px;
+                  border-top: 1px solid rgba(255, 255, 255, 0.08);
+                  font-size: 0.85rem;
+                  opacity: 0.85;
+                "
+              >
+                💡 try: <code>help</code> / <code>terraform</code> /
+                <code>azure</code> / <code>net</code> / <code>uptime</code> /
+                <code>clear</code>
+              </div>
+              <div class="d-flex" style="gap: 8px; padding: 8px 12px">
+                <span class="text-danger">$</span>&nbsp;<span id="demo-line"></span>
+              </div>
+              <div id="term-output"></div>
+              <div class="d-flex" style="gap: 8px; padding: 8px 12px">
+                <span class="text-danger">$</span>&nbsp;
+                <div
+                  class="cursor-wrap"
+                  style="flex: 1; display: flex; align-items: center"
+                >
+                  <input
+                    id="term-input"
+                    style="
+                      flex: 1;
+                      background: transparent;
+                      border: none;
+                      color: inherit;
+                      outline: none;
+                    "
+                    autocomplete="off"
+                  />
+                  <span id="block-cursor"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section id="about" class="reveal mt-4 pt-4">
+        <div class="container">
+          <h2 class="text-center fw-bold section-header">About</h2>
+          <div class="row justify-content-center">
+            <div class="col-lg-9">
+              <div class="glass p-4 rounded-4">
+                <p style="line-height: 1.75; font-size: 1.06rem" class="mb-0">
+                  I’m a hands-on <strong>Associate Cloud Consultant</strong>
+                  focused on operational excellence on
+                  <strong>Oracle Cloud (OCI)</strong> and <strong>Linux</strong>.
+                  I care about reliability, cost, and security — measured via
+                  runbooks, alerts, and real SLOs. I automate with
+                  <strong>Terraform</strong> and <strong>Ansible</strong>,
+                  monitor with <strong>Zabbix</strong> and
+                  <strong>Grafana</strong>, and keep things tidy with
+                  least‑privilege and patching. Outside work, I tinker with lab
+                  environments and keep notes that turn into checklists and
+                  scripts.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Technical Skills -->
+      <section id="technical-skills" class="reveal mt-5 pt-5">
+        <h2 class="text-center fw-bold section-header">Technical Skills</h2>
+        <div class="row mt-3 justify-content-center">
+          <div class="col-auto skill-icon">
+            <img
+              src="https://icon.icepanel.io/Technology/png-shadow-512/Linux.png"
+              alt="Linux"
+            />
+            <h5>Linux / RHEL</h5>
+          </div>
+          <div class="col-auto skill-icon">
+            <img src="https://www.svgrepo.com/show/354152/oracle.svg" alt="OCI" />
+            <h5>Oracle Cloud (OCI)</h5>
+          </div>
+          <div class="col-auto skill-icon">
+            <img src="https://www.svgrepo.com/show/448274/azure.svg" alt="Azure" />
+            <h5>Microsoft Azure</h5>
+          </div>
+          <div class="col-auto skill-icon">
+            <img src="https://www.svgrepo.com/show/448228/grafana.svg" alt="Grafana" />
+            <h5>GRAFANA</h5>
+          </div>
+          <div class="col-auto skill-icon">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/3/38/Prometheus_software_logo.svg"
+              alt="Prometheus"
+            />
+            <h5>Prometheus</h5>
+          </div>
+          <div class="col-auto skill-icon">
+            <img
+              src="https://www.svgrepo.com/show/390218/monitoring-analytics-performance.svg"
+              alt="Zabbix"
+            />
+            <h5>Zabbix</h5>
+          </div>
+          <div class="col-auto skill-icon">
+            <img
+              src="https://icon.icepanel.io/Technology/svg/HashiCorp-Terraform.svg"
+              alt="Terraform"
+            />
+            <h5>Terraform</h5>
+          </div>
+          <div class="col-auto skill-icon">
+            <img src="https://www.svgrepo.com/show/349298/ansible.svg" alt="Ansible" />
+            <h5>Ansible</h5>
+          </div>
+        </div>
+      </section>
+
+      <!-- Certifications -->
+      <section id="certifications" class="reveal mt-5 pt-5">
+        <h2 class="text-center fw-bold section-header">Certifications</h2>
+        <div class="row mt-4 justify-content-center text-center">
+          <div class="col-md-4 mb-4">
+            <div class="cert-card">
+              <img
+                src="https://www.svgrepo.com/show/354152/oracle.svg"
+                alt="Oracle"
+                style="width: 50px; margin-bottom: 10px"
+              />
+              <h5 class="fw-bold">OCI 2025 Certified Architect Associate</h5>
+              <p class="mb-1 text-body-secondary">
+                Oracle · Credential ID: 100690517OCI25CAA
+              </p>
+              <a
+                class="stretched-link"
+                href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=8F032D67DE344AE180E0941422BCAFB157626841D376576274E5585075D330C9"
+                target="_blank"
+                rel="noopener"
+                >View Credential →</a
+              >
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-4">
+            <div class="cert-card">
+              <img
+                src="https://www.svgrepo.com/show/354152/oracle.svg"
+                alt="Oracle"
+                style="width: 50px; margin-bottom: 10px"
+              />
+              <h5 class="fw-bold">OCI 2023 Certified Foundations Associate</h5>
+              <p class="mb-1 text-body-secondary">Oracle · Expires Jul 2026</p>
+              <a
+                class="stretched-link"
+                href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=71C32484E8821C1895455783BE2D758CF2A6A2A37D8393632E748FC2092D6A9A"
+                target="_blank"
+                rel="noopener"
+                >View Credential →</a
+              >
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-4">
+            <div class="cert-card">
+              <img
+                src="https://www.svgrepo.com/show/448274/azure.svg"
+                alt="Azure"
+                style="width: 50px; margin-bottom: 10px"
+              />
+              <h5 class="fw-bold">Microsoft Certified: Azure Fundamentals</h5>
+              <p class="mb-1 text-body-secondary">
+                Microsoft · Credential ID: 46E467092E4F1A3F
+              </p>
+              <a
+                class="stretched-link"
+                href="https://learn.microsoft.com/api/credentials/share/en-us/ADEELFarshaaz-8052/46E467092E4F1A3F?sharingId=9869B24F182C470C"
+                target="_blank"
+                rel="noopener"
+                >View Credential →</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience -->
+      <section id="professional-experience" class="reveal mt-5 pt-5 experience-section">
+        <h2 class="text-center fw-bold section-header">Professional Experience</h2>
+        <div class="row mt-3">
+          <div class="col-md-12">
+            <div class="accordion" id="accordionExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                  <button
+                    class="accordion-button"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseOne"
+                    aria-expanded="true"
+                    aria-controls="collapseOne"
+                  >
+                    Associate Cloud Consultant — Infolob Solutions
+                  </button>
+                </h2>
+                <div
+                  id="collapseOne"
+                  class="accordion-collapse collapse show"
+                  aria-labelledby="headingOne"
+                  data-bs-parent="#accordionExample"
+                >
+                  <div class="accordion-body">
+                    <h5>April 2024 - Present</h5>
+                    <ul>
+                      <li>
+                        Own day‑to‑day cloud operations across
+                        <strong>L1, L2, and L3</strong> levels to maintain
+                        uptime and smooth business operations.
+                      </li>
+                      <li>
+                        Handle <strong>incident response</strong>,
+                        <strong>patching</strong>, and <strong>monitoring</strong>
+                        routines; create runbooks and implement preventive
+                        actions.
+                      </li>
+                      <li>
+                        Administer <strong>OCI</strong> services:
+                        <em>Compute</em>, <em>Block Volumes</em>; use
+                        <strong>Cloud Guard</strong> for proactive threat
+                        detection and posture management.
+                      </li>
+                      <li>
+                        Leverage <strong>OCI Advisor</strong> for cost and
+                        performance recommendations, tracking and implementing
+                        optimizations.
+                      </li>
+                      <li>
+                        Build automation and consistency with
+                        <strong>Terraform</strong> and <strong>Ansible</strong>;
+                        integrate visibility using <strong>Zabbix</strong> and
+                        <strong>Grafana</strong>.
+                      </li>
+                      <li>
+                        Troubleshoot across Linux/OCI layers, improving
+                        reliability and real‑time performance management through
+                        metrics and alerts.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseTwo"
+                    aria-expanded="false"
+                    aria-controls="collapseTwo"
+                  >
+                    Linux System Administrator — Western Digital Corporation
+                  </button>
+                </h2>
+                <div
+                  id="collapseTwo"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="headingTwo"
+                  data-bs-parent="#accordionExample"
+                >
+                  <div class="accordion-body">
+                    <h5>Oct 2023 - Mar 2024 · Hyderabad (Remote)</h5>
+                    <ul>
+                      <li>
+                        Managed and supported <strong>Linux (RHEL)</strong>
+                        environments, ensuring uptime and compliance with
+                        enterprise standards.
+                      </li>
+                      <li>
+                        Performed system patching, performance checks, file
+                        system management, and user access administration.
+                      </li>
+                      <li>
+                        Collaborated with distributed teams to resolve
+                        system-level incidents and improve operational
+                        workflows.
+                      </li>
+                      <li>
+                        Applied troubleshooting practices to optimize system
+                        performance and stability in production environments.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Infolob role spotlight -->
+      <section id="infolob-role" class="reveal" style="padding: 40px; border-radius: 14px; box-shadow: var(--shadow)">
+        <h2 class="text-center fw-bold section-header">My Role at Infolob Solutions</h2>
+        <div class="row mt-3 justify-content-center">
+          <div class="col-md-10">
+            <p class="text-center" style="font-size: 1.1rem; line-height: 1.7">
+              At <strong>Infolob Solutions</strong>, I work as an Associate Cloud
+              Consultant contributing to <strong>end‑to‑end cloud operations</strong>
+              across L1, L2, and L3 support levels. My responsibilities involve
+              managing and optimizing <strong>Oracle Cloud Infrastructure (OCI)</strong>
+              and <strong>Linux</strong> platforms to ensure system reliability,
+              performance, and cost-efficiency. I actively handle
+              <strong>incident management, patching, monitoring</strong> and
+              apply <strong>Cloud Guard</strong> and <strong>OCI Advisor</strong>
+              for security and optimization improvements. Additionally, I utilize
+              <strong>Terraform, Ansible, Zabbix,</strong> and
+              <strong>Grafana</strong> to automate workflows and enhance
+              visibility across environments.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section id="projects" class="reveal mt-5 pt-5">
+        <h2 class="text-center fw-bold section-header">Highlighted Work</h2>
+        <div class="row mt-3">
+          <div class="col-md-6">
+            <div class="project-card p-3">
+              <h3 class="text-center">OCI Operations &amp; Uptime</h3>
+              <p class="text-center">
+                Implemented incident handling, patching windows, and monitoring
+                dashboards (Zabbix/Grafana) to improve stability and reduce
+                MTTR.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="project-card p-3">
+              <h3 class="text-center">Security &amp; Cost Optimization</h3>
+              <p class="text-center">
+                Used Cloud Guard for proactive detection and OCI Advisor to
+                apply cost/performance optimizations across compute and storage.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-5">
+      <h2>&copy; <span id="year"></span> Syed Farshaaz Ahmed</h2>
+      <p class="text-center">
+        Connect:
+        <a class="contact-links" href="mailto:syedfarshaazahmed@gmail.com"
+          ><i class="fa-solid fa-envelope"></i>
+          syedfarshaazahmed@gmail.com</a
+        >
+        <span> | </span>
+        <a class="contact-links" href="tel:+917981329741"
+          ><i class="fa-solid fa-phone"></i> 7981329741</a
+        >
+        <span> | </span>
+        <a
+          class="contact-links"
+          href="https://www.linkedin.com/in/syed-farshaaz-ahmed-b0365121b"
+          target="_blank"
+          rel="noopener"
+          ><i class="fa-brands fa-linkedin"></i> LinkedIn</a
+        >
+      </p>
+    </footer>
+
+    <!-- (hidden) Big floating theme toggle -->
+    <button id="bigThemeBtn" class="theme-fab" title="Toggle theme">
+      <i id="bigThemeIcon" class="fa-solid fa-sun"></i>
+      <span id="bigThemeLabel">Dark</span>
+    </button>
+
+    <!-- JS libs -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- App JS: theme, tilt, reveal, progress bar -->
+    <script>
+      (function () {
+        const root = document.documentElement;
+        const nav = document.querySelector("nav.navbar");
+        const smallBtn = document.getElementById("themeToggle");
+        const smallIcon = document.getElementById("themeIcon");
+        const smallLabel = document.getElementById("headerThemeLabel");
+        const bigBtn = document.getElementById("bigThemeBtn");
+        const bigIcon = document.getElementById("bigThemeIcon");
+        const bigLabel = document.getElementById("bigThemeLabel");
+        const progressBar = document.getElementById("progressBar");
+
+        function applyTheme(theme) {
+          const dark = theme === "dark";
+          root.setAttribute("data-theme", dark ? "dark" : "light");
+          root.setAttribute("data-bs-theme", dark ? "dark" : "light");
+          if (nav) {
+            nav.classList.toggle("navbar-dark", dark);
+            nav.classList.toggle("navbar-light", !dark);
+          }
+          if (smallIcon) smallIcon.className = dark ? "fa-solid fa-sun" : "fa-solid fa-moon";
+          if (bigIcon) bigIcon.className = dark ? "fa-solid fa-sun" : "fa-solid fa-moon";
+          if (smallLabel) smallLabel.textContent = dark ? "Dark" : "Light";
+          if (bigLabel) bigLabel.textContent = dark ? "Dark" : "Light";
+          try {
+            localStorage.setItem("theme", theme);
+          } catch (e) {}
+        }
+
+        function toggleTheme() {
+          const cur = root.getAttribute("data-theme") || "dark";
+          applyTheme(cur === "dark" ? "light" : "dark");
+        }
+
+        // init from saved
+        applyTheme(
+          (() => {
+            try {
+              return localStorage.getItem("theme") || "dark";
+            } catch (e) {
+              return "dark";
+            }
+          })()
+        );
+
+        // bind controls (no keyboard shortcuts; click-only)
+        smallBtn && smallBtn.addEventListener("click", toggleTheme);
+        smallIcon && smallIcon.addEventListener("click", toggleTheme);
+        bigBtn && bigBtn.addEventListener("click", toggleTheme);
+
+        // 3D tilt on skill cards
+        document.querySelectorAll(".skill-icon").forEach((el) => {
+          el.addEventListener("pointermove", (e) => {
+            const r = el.getBoundingClientRect();
+            const x = (e.clientX - r.left) / r.width - 0.5;
+            const y = (e.clientY - r.top) / r.height - 0.5;
+            el.style.transform = `translateY(-6px) rotateX(${(y * 8).toFixed(
+              2
+            )}deg) rotateY(${(-x * 8).toFixed(2)}deg)`;
+          });
+          el.addEventListener("pointerleave", () => {
+            el.style.transform = "";
+          });
+        });
+
+        // 3D tilt on terminal panel
+        const termPanel = document.getElementById("terminal");
+        if (termPanel) {
+          termPanel.addEventListener("pointermove", (e) => {
+            const r = termPanel.getBoundingClientRect();
+            const x = (e.clientX - r.left) / r.width - 0.5;
+            const y = (e.clientY - r.top) / r.height - 0.5;
+            const Max = 5;
+            termPanel.style.transform = `rotateX(${(y * Max).toFixed(
+              2
+            )}deg) rotateY(${(-x * Max).toFixed(2)}deg)`;
+          });
+          termPanel.addEventListener("pointerleave", () => {
+            termPanel.style.transform = "";
+          });
+        }
+
+        // group tilt (hero name + terminal) — desktop only
+        const hero = document.getElementById("home") || document.querySelector(".hero");
+        const heroTilt = document.querySelector(".hero-tilt");
+        if (hero && heroTilt && !window.matchMedia("(pointer: coarse)").matches) {
+          let b;
+          const max = 6;
+          function ub() {
+            b = hero.getBoundingClientRect();
+          }
+          window.addEventListener("resize", ub);
+          ub();
+          hero.addEventListener("mousemove", (e) => {
+            const x = (e.clientX - b.left) / b.width;
+            const y = (e.clientY - b.top) / b.height;
+            heroTilt.style.transform = `rotateX(${((0.5 - y) * max * 2).toFixed(
+              2
+            )}deg) rotateY(${((x - 0.5) * max * 2).toFixed(2)}deg)`;
+          });
+          hero.addEventListener("mouseleave", () => {
+            heroTilt.style.transform = "rotateX(0deg) rotateY(0deg)";
+          });
+        }
+
+        // progress bar
+        function updateProgress() {
+          const h = document.documentElement;
+          const scrolled = h.scrollTop || document.body.scrollTop || 0;
+          const height = Math.max(1, h.scrollHeight - h.clientHeight);
+          const pct = Math.min(100, Math.max(0, (scrolled / height) * 100));
+          if (progressBar) progressBar.style.width = pct + "%";
+        }
+        window.addEventListener("scroll", updateProgress);
+        updateProgress();
+
+        // footer year
+        const yearEl = document.getElementById("year");
+        if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+        // quick asserts
+        console.assert(document.getElementById("themeToggle"), "Theme toggle button missing");
+        console.assert(document.getElementById("terminal"), "Terminal block missing");
+        console.assert(document.querySelector(".hero-tilt"), "Hero tilt wrapper missing");
+      })();
+    </script>
+
+    <!-- Reveal on scroll -->
+    <script>
+      (function () {
+        const sections = document.querySelectorAll("section.reveal");
+        const pref = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (pref) {
+          sections.forEach((s) => s.classList.add("reveal-in"));
+          return;
+        }
+        const io = new IntersectionObserver(
+          (es) => {
+            es.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add("reveal-in");
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { rootMargin: "0px 0px -10% 0px", threshold: 0.12 }
+        );
+        sections.forEach((s) => io.observe(s));
+      })();
+    </script>
+
+    <!-- Terminal JS -->
+    <script>
+      (function () {
+        const out = document.getElementById("term-output");
+        const inp = document.getElementById("term-input");
+        const demo = document.getElementById("demo-line");
+        if (!(out && inp && demo)) return;
+
+        // focus behavior
+        inp.setAttribute("autofocus", "autofocus");
+        try {
+          inp.focus();
+        } catch (e) {}
+        document.getElementById("terminal").addEventListener("click", () => {
+          try {
+            inp.focus();
+          } catch (e) {}
+        });
+
+        // uptime helper
+        const start = Date.now();
+        const pad = (n) => String(n).padStart(2, "0");
+        const upt = () => {
+          const s = Math.floor((Date.now() - start) / 1000);
+          const hh = pad(Math.floor(s / 3600));
+          const mm = pad(Math.floor((s % 3600) / 60));
+          const ss = pad(s % 60);
+          return `${hh}:${mm}:${ss}`;
+        };
+
+        // demo typing loop
+        const demoCmds = [
+          () => `terraform plan -refresh=false`,
+          () => `az vm list -o table`,
+          () => `az network vnet list -o table`,
+          () => `ip -br addr`,
+          () => `ip route`,
+          () => `terraform fmt -check`,
+          () => `az account show --query user.name`,
+        ];
+        let i = 0,
+          paused = false,
+          mode = "type",
+          cur = 0,
+          text = "";
+        (function tick() {
+          if (!paused) {
+            if (mode === "type") {
+              if (cur === 0) {
+                text = demoCmds[i % demoCmds.length]();
+              }
+              cur++;
+              demo.textContent = text.slice(0, cur);
+              if (cur >= text.length) {
+                mode = "hold";
+                setTimeout(() => {
+                  mode = "erase";
+                }, 900);
+              }
+            } else if (mode === "erase") {
+              cur--;
+              demo.textContent = text.slice(0, Math.max(0, cur));
+              if (cur <= 0) {
+                mode = "type";
+                i++;
+              }
+            }
+          }
+          setTimeout(tick, (mode === "erase" ? 16 : 28) + Math.random() * 12);
+        })();
+
+        // print helper
+        function print(html) {
+          const d = document.createElement("div");
+          d.innerHTML = html;
+          out.appendChild(d);
+          out.scrollTop = out.scrollHeight;
+        }
+
+        // commands
+        const cmds = {
+          help() {
+            print(
+              'available: <code>help</code>, <code>terraform</code>, <code>azure</code>, <code>net</code>, <code>uptime</code>, <code>theme</code>, <code>clear</code>'
+            );
+          },
+          terraform() {
+            print(
+              `<pre><code>Terraform v1.6.6
+Initializing the backend...
+Plan: 2 to add, 0 to change, 0 to destroy.
+  + oci_core_vcn.main
+  + oci_core_instance.web[0]</code></pre>`
+            );
+          },
+          azure() {
+            print(
+              `<pre><code>$ az vm list -o table
+Name         ResourceGroup   Location   PowerState
+web-01       prod-rg         eastus     VM running
+bastion-01   net-rg          eastus     VM deallocated</code></pre>`
+            );
+          },
+          net() {
+            print(
+              `<pre><code>$ ip -br addr
+eth0    UP   10.0.1.10/24
+lo      UP   127.0.0.1/8
+
+$ ip route
+default via 10.0.1.1 dev eth0
+10.0.1.0/24 dev eth0 proto kernel scope link src 10.0.1.10</code></pre>`
+            );
+          },
+          uptime() {
+            print(`uptime: <strong>${upt()}</strong>`);
+          },
+          theme() {
+            document.getElementById("themeToggle")?.click();
+            print("theme toggled");
+          },
+          clear() {
+            out.innerHTML = "";
+          },
+        };
+
+        let resumeT = null;
+        const pause = () => {
+          paused = true;
+          resumeT && clearTimeout(resumeT);
+        };
+        const resume = () => {
+          paused = false;
+        };
+
+        // input handler
+        inp.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") {
+            const raw = inp.value.trim();
+            if (!raw) return;
+            pause();
+            print(`<span class='text-danger'>$</span> ${raw}`);
+            const [c, ...rest] = raw.split(" ");
+            (cmds[c]?.(rest.join(" "))) ?? print(`command not found: <code>${c}</code>`);
+            inp.value = "";
+            resumeT = setTimeout(resume, 6000);
+          } else {
+            pause();
+            resumeT = setTimeout(resume, 6000);
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
